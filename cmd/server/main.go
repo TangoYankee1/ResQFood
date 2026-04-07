@@ -4,9 +4,14 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/TangoYankee1/ResQFood/internal/database"
 )
 
 func main() {
+	db := database.InitDB("./resqfood.db")
+	defer db.Close()
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello, ResQFood!")
 	})
