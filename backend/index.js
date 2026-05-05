@@ -1,24 +1,26 @@
 const express = require('express');
-const cors = require('cors');
+const bodyParser = require('body-parser');
+const beneficiariesRoutes = require('./routes/beneficiaries');
+const donationsRoutes = require('./routes/donations');
+const assignmentsRoutes = require('./routes/assignments');
+const usersRoutes = require('./routes/users');
+const errorHandler = require('./middleware/errorHandler');
+
 const app = express();
-const port = process.env.PORT || 3001;
-const usersRouter = require('./routes/users');
-const donationsRouter = require('./routes/donations');
-const assignmentsRouter = require('./routes/assignments');
-const beneficiariesRouter = require('./routes/beneficiaries');
+const port = 3001;
 
-app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello from the ResQFood API!');
-});
+app.use('/api/beneficiaries', beneficiariesRoutes);
+app.use('/api/donations', donationsRoutes);
+app.use('/api/assignments', assignmentsRoutes);
+app.use('/api/users', usersRoutes);
 
-app.use('/api/users', usersRouter);
-app.use('/api/donations', donationsRouter);
-app.use('/api/assignments', assignmentsRouter);
-app.use('/api/beneficiaries', beneficiariesRouter);
+// Use the error handler middleware
+app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server listening on port ${port}`);
 });
+
+module.exports = app; // Export the app for testing purposes
