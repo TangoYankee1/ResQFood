@@ -31,26 +31,41 @@ This document outlines the development phases for the ResQFood project.
 
 ---
 
-### Phase 3: Frontend Development (Pending)
+### Phase 3: Backend Refactoring & Testing (Complete)
+
+**Objective:** Refactor the backend to improve code quality, security, and maintainability.
+
+**Key Tasks:**
+- [x] **Task 3.1:** Create a generic `crudController` to eliminate redundant code in route handlers.
+- [x] **Task 3.2:** Refactor all existing routes (`users`, `donations`, `assignments`, `beneficiaries`) to use the new `crudController`.
+- [x] **Task 3.3:** Implement a comprehensive test suite with Jest and Supertest for all API endpoints.
+- [x] **Task 3.4:** Identify and fix a critical mass assignment vulnerability by implementing an `allowedCreateFields` whitelist.
+- [x] **Task 3.5:** Ensure all tests pass, confirming backend stability.
+- [x] **Task 3.6:** Document project status and log all major actions.
+
+---
+
+### Phase 4: Frontend Development (In Progress)
 
 **Objective:** Develop the user interface and connect it to the backend API.
 
 **Key Tasks:**
-- [ ] **Task 3.1:** Set up basic frontend structure and routing.
-- [ ] **Task 3.2:** Implement User Authentication views (Login, Register).
-- [ ] **Task 3.3:** Create a dashboard for viewing and managing donations.
-- [ ] **Task 3.4:** Develop functionality for assigning volunteers to donations.
-- [ ] **Task 3.5:** Build views for managing beneficiaries.
-- [ ] **Task 3.6:** Implement a responsive design for mobile and desktop use.
+- [x] **Task 4.1:** Set up basic frontend structure and routing.
+- [x] **Task 4.2:** Implement Registration page and link homepage buttons.
+- [x] **Task 4.3:** Implement User Login functionality.
+- [ ] **Task 4.4:** Create a dashboard for viewing and managing donations.
+- [ ] **Task 4.5:** Develop functionality for assigning volunteers to donations.
+- [ ] **Task 4.6:** Build views for managing beneficiaries.
+- [ ] **Task 4.7:** Implement a responsive design for mobile and desktop use.
 
 ---
 
-### Phase 4: Testing & Deployment (Future)
+### Phase 5: Full-Stack Testing & Deployment (Future)
 
 **Objective:** Ensure the application is bug-free and deploy it to a production environment.
 
 **Key Tasks:**
-- [ ] Write unit and integration tests for the backend.
 - [ ] Write component and end-to-end tests for the frontend.
+- [ ] Conduct full-stack integration testing.
 - [ ] Prepare the application for deployment.
 - [ ] Deploy the backend and frontend to a cloud provider.

@@ -1,21 +1,16 @@
-# ResQFood Backend Refactoring
+# ResQFood Project
 
-## Goal
-Refactor the ResQFood backend to meet high engineering standards by reducing code duplication, improving security, and ensuring all functionality is covered by tests.
+**Goal:** Build a web application that connects food donors with volunteers and beneficiaries to reduce food waste.
 
-## Tech Stack
-- Node.js
-- Express.js
-- MySQL2
-- Jest
-- Supertest
+**Tech Stack:**
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Node.js, Express.js
+- **Database:** MySQL
 
-## Current Status
-All backend routes (`/api/users`, `/api/donations`, `/api/beneficiaries`, `/api/assignments`) have been successfully refactored to use a generic, reusable `crudController.js`. This has significantly reduced code duplication.
+**Current Status:**
+The core user registration and onboarding flow is now **complete and stable**. Users can create an account with a specific role (Donor, Volunteer, or Beneficiary) and are then guided through a profile completion form. This form is dynamically tailored to their role and securely saves their information to the database. The system is robust, with fixes in place for redirection, authentication, and data validation.
 
-A mass assignment vulnerability was identified and fixed by implementing an `allowedCreateFields` whitelist in the `crudController`.
-
-A comprehensive test suite has been established, and all tests are currently passing, confirming the stability of the refactored code. The backend is considered stable and ready for further development.
-
-## Next Tasks
-- Await further instructions from the project owner.
+**Next Tasks:**
+- Build the main application dashboard.
+- Implement the food "rescue" (listing and claiming) functionality.
+- Develop the user-facing map to show available food.

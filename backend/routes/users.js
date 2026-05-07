@@ -9,15 +9,24 @@ const { createCrudController, catchAsync } = require('../controllers/crudControl
 const usersController = createCrudController('users', 'user_id', ['username', 'email', 'password_hash', 'role']);
 
 // Custom routes for registration and login
-router.post('/register', catchAsync(async (req, res) => {
-  const { username, email, password, role } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const result = await db.query(
-    'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)',
-    [username, email, hashedPassword, role]
-  );
-  res.status(201).json({ message: 'User registered successfully!', userId: result.insertId });
-}));
+router.post('/register', async (req, res, next) => {
+  try {
+    const { username, email, password, role } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const result = await db.query(
+      'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)',
+      [username, email, hashedPassword, role]
+    );
+    const newUser = { id: result.insertId, role: role };
+    const token = jwt.sign(newUser, config.jwtSecret, { expiresIn: '1h' });
+    res.status(201).json({ token });
+  } catch (error) {
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ message: 'This username or email is already taken.' });
+    }
+    next(error); // Pass other errors to the global error handler
+  }
+});
 
 router.post('/login', catchAsync(async (req, res) => {
   const { email, password } = req.body;

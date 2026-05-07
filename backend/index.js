@@ -4,6 +4,7 @@ const beneficiariesRoutes = require('./routes/beneficiaries');
 const donationsRoutes = require('./routes/donations');
 const assignmentsRoutes = require('./routes/assignments');
 const usersRoutes = require('./routes/users');
+const profilesRoutes = require('./routes/profiles');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -15,6 +16,7 @@ app.use('/api/beneficiaries', beneficiariesRoutes);
 app.use('/api/donations', donationsRoutes);
 app.use('/api/assignments', assignmentsRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/profiles', profilesRoutes);
 
 // Use the error handler middleware
 app.use(errorHandler);
